@@ -19,35 +19,35 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-        -task: DotNetCoreCLI@2
-        displayName: restore
-        inputs:
-         command: 'restore'
-         projects: '**/*.sln'
-         feedsToUse: 'select'
+        - task: DotNetCoreCLI@2
+          displayName: restore
+          inputs:
+           command: 'restore'
+           projects: '**/*.sln'
+           feedsToUse: 'select'
          
-        -task: DotNetCoreCLI@2
-        displayName: Build
-        inputs:
-         command: 'build'
-         projects: '**/*.sln'
+        - task: DotNetCoreCLI@2
+          displayName: Build
+          inputs:
+           command: 'build'
+           projects: '**/*.sln'
 
-        -task: DotNetCoreCLI@2
-        displayName: Unit-Test	
-        inputs:
-         command: 'test'
-         projects: 'tests/UnitTests/*.csproj'
+        - task: DotNetCoreCLI@2
+          displayName: Unit-Test	
+          inputs:
+           command: 'test'
+           projects: 'tests/UnitTests/*.csproj'
 
-        -task: DotNetCoreCLI@2
-        displayName: publish
-        inputs:
-         command: 'publish'
-         publishWebProjects: true
-         arguments: '-o $(Build.ArtifactStagingDirectory'
+        - task: DotNetCoreCLI@2
+          displayName: publish
+          inputs:
+           command: 'publish'
+           publishWebProjects: true
+           arguments: '-o $(Build.ArtifactStagingDirectory'
 
-        -task: PublishBuildArtifacts@1
-        displayName: Publish Artifacts
-        inputs:
-         PathtoPublish: '$(Build.ArtifactStagingDirectory'
-         ArtifactName: RetailApp
+        - task: PublishBuildArtifacts@1
+          displayName: Publish Artifacts
+          inputs:
+           PathtoPublish: '$(Build.ArtifactStagingDirectory'
+           ArtifactName: RetailApp
 
