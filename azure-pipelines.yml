@@ -69,7 +69,28 @@ stages:
               ConnectionType: AzureRM
               azureSubscription: 'eshopdeploy'
               appType: webApp
-              WebAppName: 'prkwebapp09'
+              WebAppName: 'prkwebapp10'
+              packageForLinux: '$(Build.ArtifactStagingDirectory)/**/Web.zip'
+
+  - stage: Deployment_QA
+    displayName: QA_Env
+    jobs:
+      - job: Deploy
+        pool:
+          vmImage: Windows-latest
+        steps:
+          - task: DownloadBuildArtifacts@1
+            inputs:
+             buildType: 'current'
+             downloadType: 'single'
+             artifactName: 'RetailApp'
+             downloadPath: '$(Build.ArtifactStagingDirectory)'
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: AzureRM
+              azureSubscription: 'eshopdeploy'
+              appType: webApp
+              WebAppName: 'prkwebapp11'
               packageForLinux: '$(Build.ArtifactStagingDirectory)/**/Web.zip'
 
 
