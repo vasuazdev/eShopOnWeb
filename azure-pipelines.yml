@@ -87,11 +87,11 @@ stages:
              downloadPath: '$(Build.ArtifactStagingDirectory)'
           - task: AzureRmWebAppDeployment@4
             inputs:
-              ConnectionType: AzureRM
-              azureSubscription: 'eshopdeploy'
-              appType: webApp
-              WebAppName: 'prkwebapp11'
-              packageForLinux: '$(Build.ArtifactStagingDirectory)/**/Web.zip'
+             ConnectionType: AzureRM
+             azureSubscription: 'eshopdeploy'
+             appType: webApp
+             WebAppName: 'prkwebapp11'
+             packageForLinux: '$(Build.ArtifactStagingDirectory)/**/Web.zip'
 
 
 
